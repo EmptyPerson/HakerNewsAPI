@@ -1,4 +1,4 @@
-import {addNewsAction} from "../store/reducerManageNews";
+import {addNewsAction, setIsFetching} from "../store/reducerManageNews";
 
 // export const fetchStory = async (id) => {
 //
@@ -22,7 +22,7 @@ import {addNewsAction} from "../store/reducerManageNews";
 export const fetchNews = () => {
 
     return async (dispatch) => {
-
+        dispatch(setIsFetching(true))
         try {
             let response = await fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
 

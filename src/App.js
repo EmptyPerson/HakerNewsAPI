@@ -5,6 +5,8 @@ import OnesStory from "./component/OnesStory/OnesStory";
 import TreeComments from "./component/OnesStory/TreeComments";
 import Comments from "./component/Comments/Comments";
 import Test from "./component/Comments/Test";
+import Navbar from "./component/Navbar/Navbar";
+
 
 function App() {
   return (
@@ -12,7 +14,8 @@ function App() {
         <BrowserRouter>
 
             <Switch>
-                <Route  exact path="/" component={News}/>
+
+                <Route exact path="/" component={News}/>
                 <Route exact path="/story/:id" component={TreeComments}/>
                 <Route exact path="/:id" component={Test}/>
                 <Route

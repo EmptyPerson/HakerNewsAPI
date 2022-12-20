@@ -10,7 +10,7 @@ import {
 
 const Comments = ({match}) => {
     const [comments, setComments] = useState([])
-    console.log(match.params.id)
+    console.log(match)
 
     const [isLoad, setIsLoad] = useState(false)
 
@@ -20,7 +20,7 @@ const Comments = ({match}) => {
         // console.log(promA)
         async function fetchData() {
             // You can await here
-            const listComments = await fetchCommentFromStory([match.params.id] , setComments);
+            const listComments = await fetchCommentFromStory([match] , setComments);
             // ...
             // setComments(listComments)
         }

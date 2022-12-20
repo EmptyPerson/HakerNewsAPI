@@ -1,9 +1,10 @@
-import {addCommentsAction, addCommentsActionObj} from "../store/reducerManageComments";
+import {addCommentsAction, addCommentsActionObj, addIsFetching} from "../store/reducerManageComments";
 
 
 
 export const fetchComments = (id) => {
     return async (dispatch) => {
+        dispatch(addIsFetching(true))
         // try {
         //  we have to get fresh comments because one of chance for get not all comments if we take old array of comments from news
         // need fresh array of comments
@@ -50,9 +51,11 @@ export const fetchCommentFromStory = async (commentsListID) => {
         // console.log(ID)
         if (comment && "kids" in comment && comment.kids.length > 0) {
             comment["kidsObj"]= await fetchCommentFromStory(comment.kids)
+            comment["isActive"] = false
             comments.push(comment)
         } else {
             comments.push(comment)
+
         }
     }
     ))
@@ -136,6 +139,7 @@ export const fetchCommentFromSItem = async (id) => {
             comment.kids.map(async (item) => {
                 console.log(item)
                 comment["kidsObj"]= await fetchCommentFromSItem(item)
+                comment["isActive"] = false
                 comments.push(comment)
             })
 

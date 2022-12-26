@@ -14,9 +14,7 @@ const ButtonUpdate = ({countNews = null, update, idComment = null}) => {
                     dispatch(update(idComment))
                     dispatch(addIsNotActive())
                 }
-            }
-            }>
-
+            }}>
                 <svg className="w-12 h-12" height="512" id="Layer_1" version="1.1" viewBox="0 0 512 512" width="512"
                      xmlns="http://www.w3.org/2000/svg">
                     <defs id="defs12"/>
@@ -29,8 +27,6 @@ const ButtonUpdate = ({countNews = null, update, idComment = null}) => {
                             id="Retweet" style={{fill: "#ffffff", fillOpacity: 1}}/>
                     </g>
                 </svg>
-
-
             </button>
         </div>
     );

@@ -6,10 +6,8 @@ import {reducerManageComments} from "./reducerManageComments";
 
 
 const rootReducer = combineReducers({
-
     managerNews: reducerManageNews,
     managerComments: reducerManageComments,
-    // manageActive: reducerManageActive,
 })
 
 export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

@@ -16,8 +16,6 @@ const Navbar = ({
                     isFetching
                 }) => {
     const dispatch = useDispatch()
-    // const [countNews, setCountNews] = useState(5)
-
 
     return (
         <Fragment>
@@ -34,14 +32,13 @@ const Navbar = ({
                                 disabled={isFetching}
                                 type="range"
                                 className="
-
-      w-full
-      h-6
-      p-0
-      bg-transparent
-      focus:outline-none focus:ring-0 focus:shadow-none
-      sm:mb-4
-    "
+                                      w-full
+                                      h-6
+                                      p-0
+                                      bg-transparent
+                                      focus:outline-none focus:ring-0 focus:shadow-none
+                                      sm:mb-4
+                                         "
                                 min="1"
                                 max="150"
                                 id="customRange2"
@@ -49,19 +46,20 @@ const Navbar = ({
                                 value={countNews}
                                 onChange={(e) =>
                                     dispatch(setCountNews(Number(e.target.value)))
-                                    // setCountNews( (prev) => e.target.value)
-
                                 }
                             />
-
                         </div> : null}
                     <div className="flex">
-
                         <div className="flex mr-4">
-                            <input onChange={() => setIsAutoUpdate(!isAutoUpdate)
-                            } type="checkbox" id="choose-me" className="peer hidden"/>
-                            <label htmlFor="choose-me" className="select-none cursor-pointer rounded-lg border-2 border-brightBlue
-                                    py-2 px-2 font-bold text-gray-200 transition-colors duration-200 ease-in-out peer-checked:bg-brightBlue peer-checked:border-gray-200 dark:hover:text-white hover:bg-gray-100 hover:text-blue-700 dark:hover:bg-transparentBlue ">
+                            <input onChange={() => setIsAutoUpdate(!isAutoUpdate)}
+                                   type="checkbox"
+                                   id="choose-me"
+                                   className="peer hidden"/>
+                            <label htmlFor="choose-me"
+                                   className="select-none cursor-pointer rounded-lg border-2 border-brightBlue
+                                    py-2 px-2 font-bold text-gray-200 transition-colors duration-200 ease-in-out
+                                    peer-checked:bg-brightBlue peer-checked:border-gray-200 dark:hover:text-white
+                                    hover:bg-gray-100 hover:text-blue-700 dark:hover:bg-transparentBlue ">
                                 Auto update </label>
                         </div>
                         <ButtonUpdate countNews={countNews} idComment={idComment} update={updateFetch}/>
@@ -71,11 +69,15 @@ const Navbar = ({
                                             dispatch(addIsNotActive())
                                             back()
                                         }}
-                                        className="p-3 mr-4 font-medium text-white focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-brightBlue dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-transparentBlue">
+                                        className="p-3 mr-4 font-medium text-white
+                                        focus:outline-none bg-white rounded-full
+                                        border border-gray-200 hover:bg-gray-100 hover:text-blue-700
+                                        focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700
+                                        dark:bg-brightBlue dark:text-white dark:border-gray-600
+                                        dark:hover:text-white dark:hover:bg-transparentBlue">
                             Back
                         </button> : null}
                     </div>
-
                 </div>
             </nav>
         </Fragment>

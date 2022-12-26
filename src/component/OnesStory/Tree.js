@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {addIsActionComment} from "../../store/reducerManageComments";
 import DropDownIcon from "./DropDownIcon";
@@ -6,10 +6,10 @@ import DropDownIcon from "./DropDownIcon";
 
 const Tree = ({comments}) => {
     const isActive = useSelector(state => state.managerComments.isActive)
-    const [showNested, setShowNested] = useState({})
-    const toggleNested = (name) => {
-        setShowNested({...showNested, [name]: !showNested[name]})
-    }
+    // const [showNested, setShowNested] = useState({})
+    // const toggleNested = (name) => {
+    //     setShowNested({...showNested, [name]: !showNested[name]})
+    // }
     const dispatch = useDispatch()
 
     return (
@@ -18,10 +18,7 @@ const Tree = ({comments}) => {
             {comments && comments.length > 0 ?
                 <Fragment>
                     <ul className="py-2 w-full rounded-t-lg">
-
                         {comments.map((item) => {
-                            // {console.log(item)}
-                            // isActive ?
                             const flag = "kidsObj" in item && item.kidsObj.length > 0
 
                             return (
@@ -36,9 +33,8 @@ const Tree = ({comments}) => {
                                             >
                                                 <DropDownIcon isActive={!isActive[item.id]}/>
                                             </button>
-                                        </Fragment> :
-
-                                        null}
+                                        </Fragment> : null
+                                    }
                                     {item.text ? <li className="dark:text-white mt-4" key={item.id}>
                                         <div style={{wordWrap: "break-word", wordBreak: "break-word"}}
                                              className="flex w-ful items-start  text-justify">{!flag ?
@@ -50,20 +46,18 @@ const Tree = ({comments}) => {
                                                 </svg>
                                             </div>
                                             : null
-                                        } {item.by + "  " + item.text}</div>
+                                        } {item.by + ":  " + item.text}
+                                        </div>
                                         {flag && isActive[item.id] ?
                                             <Fragment>
                                                 <div><Tree comments={item.kidsObj}/></div>
                                             </Fragment>
                                             : null}
-
                                     </li> : null}
                                 </div>
                             )
                         })}
                     </ul>
-
-
                 </Fragment>
                 : <h1 className="text-2xl font-semibold text-center text-gray-800 dark:text-white">Not comments yet</h1>
             }

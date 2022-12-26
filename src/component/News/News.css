@@ -48,8 +48,6 @@
 /*!*}*!*/
 
 
-
-
 /*.story_content {*/
 /*    padding: 1rem 0.8rem;*/
 /*}*/
@@ -121,7 +119,7 @@
     background-color: #161f34;
     border-radius: 0.625rem;
     padding: 1rem;
-/*    161f34*/
+    /*    161f34*/
 }
 
 .story ul {
@@ -132,7 +130,7 @@
     margin-bottom: 0.25rem;
 }
 
-.story ul li{
+.story ul li {
     color: slategrey;
 }
 
@@ -153,7 +151,7 @@
 
 .comments-link:hover {
     color: #fff;
-/*    #fff*/
+    /*    #fff*/
 }
 
 /*@media (min-width: 800px) {*/

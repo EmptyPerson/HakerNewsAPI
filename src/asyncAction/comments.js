@@ -1,38 +1,25 @@
 import {addCommentsAction, addCommentsActionObj, addIsFetching} from "../store/reducerManageComments";
 
 
-
 export const fetchComments = (id) => {
     return async (dispatch) => {
         dispatch(addIsFetching(true))
-        // try {
-        //  we have to get fresh comments because one of chance for get not all comments if we take old array of comments from news
-        // need fresh array of comments
         const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
 
         if (response.status === 200) {
             const story = await response.json()
             const newsListComments = await fetchCommentFromStory(story.kids)
             console.log(newsListComments)
-             dispatch(addCommentsAction(newsListComments))
+            dispatch(addCommentsAction(newsListComments))
 
         } else {
             throw new Error(
                 `Error code: ${response.status}\nError message: ${response.statusText}                  `
             )
         }
-        // } catch (err) {
-        //     console.log(err.message)
-        // }
-
-        // this.todos =  [...this.todos, ...news]
-        // runInAction(() => {
-        //     this.todos.push(news)
-        // })
-
-        // console.log(news)
     }
 }
+
 export function showActionSheetWithOptionsAsync(ArrayIDs) {
     return new Promise(resolve => {
         // resolve is a function, it can be supplied as callback parameter
@@ -44,28 +31,27 @@ export const fetchCommentFromStory = async (commentsListID) => {
     let comments = []
 
     if (commentsListID && commentsListID.length > 0)
-     await Promise.all(commentsListID.map(async (ID) => {
+        await Promise.all(commentsListID.map(async (ID) => {
 
-        const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${ID}.json`)
-        const comment = await response.json()
-        // console.log(ID)
-        if (comment && "kids" in comment && comment.kids.length > 0) {
-            comment["kidsObj"]= await fetchCommentFromStory(comment.kids)
-            comment["isActive"] = false
-            comments.push(comment)
-        } else {
-            comments.push(comment)
+                const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${ID}.json`)
+                const comment = await response.json()
+                // console.log(ID)
+                if (comment && "kids" in comment && comment.kids.length > 0) {
+                    comment["kidsObj"] = await fetchCommentFromStory(comment.kids)
+                    comment["isActive"] = false
+                    comments.push(comment)
+                } else {
+                    comments.push(comment)
 
-        }
-    }
-    ))
+                }
+            }
+        ))
 
 
     // console.log(comments)
     // setC(comments)
-     return comments
+    return comments
 }
-
 
 
 export const fetchCommentCurrantStory = async (id, setComments) => {
@@ -78,12 +64,10 @@ export const fetchCommentCurrantStory = async (id, setComments) => {
     if (response.status === 200) {
         const story = await response.json()
         // story.kids = undefined;
-         const newsListComments = await fetchCommentFromStory([33581599])
+        const newsListComments = await fetchCommentFromStory([33581599])
         // console.log(newsListComments)
         // setComments(newsListComments)
         return newsListComments
-
-
 
 
     } else {
@@ -107,66 +91,62 @@ export const fetchCommentCurrantStory = async (id, setComments) => {
 
 export const fetchItem = async (id) => {
 
-        // try {
-        //  we have to get fresh comments because one of chance for get not all comments if we take old array of comments from news
-        // need fresh array of comments
-        const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+    // try {
+    //  we have to get fresh comments because one of chance for get not all comments if we take old array of comments from news
+    // need fresh array of comments
+    const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
 
-        if (response.status === 200) {
-            const item = await response.json()
-            return item
+    if (response.status === 200) {
+        const item = await response.json()
+        return item
 
 
-        } else {
-            throw new Error(
-                `Error code: ${response.status}\nError message: ${response.statusText}                  `
-            )
-        }
+    } else {
+        throw new Error(
+            `Error code: ${response.status}\nError message: ${response.statusText}                  `
+        )
+    }
 
 
 }
-
-
 
 
 export const fetchCommentFromSItem = async (id) => {
 
 
-        let comments = []
-        const  comment = await fetchItem(id)
+    let comments = []
+    const comment = await fetchItem(id)
     console.log(comment)
-        if (comment && "kids" in comment && comment.kids.length > 0) {
-            comment.kids.map(async (item) => {
-                console.log(item)
-                comment["kidsObj"]= await fetchCommentFromSItem(item)
-                comment["isActive"] = false
-                comments.push(comment)
-            })
-
-        } else {
+    if (comment && "kids" in comment && comment.kids.length > 0) {
+        comment.kids.map(async (item) => {
+            console.log(item)
+            comment["kidsObj"] = await fetchCommentFromSItem(item)
+            comment["isActive"] = false
             comments.push(comment)
-            // return comments
-        }
+        })
+
+    } else {
+        comments.push(comment)
+        // return comments
+    }
 
     return comments
 }
-
-
 
 
 export const fetchCommentFromSItem_ = async (id) => {
 
 
     // let comments = []
-    const  comment = await fetchItem(id)
+    const comment = await fetchItem(id)
 
     // console.log(comment)
     if (comment && "kids" in comment && comment.kids.length > 0) {
         comment["kidsObj"] = []
-        comment["kidsObj"] =  await Promise.all(comment.kids.map((item) => {
+        comment["kidsObj"] = await Promise.all(comment.kids.map((item) => {
             // console.log(item)
             fetchCommentFromSItem_(item)
-           // comment["kidsObj"].push(fetchCommentFromSItem_(item))
+            // comment["kidsObj"].push(fetchCommentFromSItem_(item))
             // comments.push(comment)
         }))
 
@@ -176,10 +156,10 @@ export const fetchCommentFromSItem_ = async (id) => {
 }
 
 export const dispatchComments = (id) => {
-   return async(dispatch) => {
-       const comment = await fetchCommentFromSItem_(id)
-       dispatch(addCommentsActionObj(comment))
-   }
+    return async (dispatch) => {
+        const comment = await fetchCommentFromSItem_(id)
+        dispatch(addCommentsActionObj(comment))
+    }
 
 }
 
@@ -229,11 +209,8 @@ export const dispatchComments = (id) => {
 // }
 
 
-
-
-export const fetchItemDel =  (id) => {
-    return async (dispatch) =>
-    {
+export const fetchItemDel = (id) => {
+    return async (dispatch) => {
         // try {
         //  we have to get fresh comments because one of chance for get not all comments if we take old array of comments from news
         // need fresh array of comments

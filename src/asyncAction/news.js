@@ -19,10 +19,11 @@ import {addNewsAction, setIsFetching} from "../store/reducerManageNews";
 // }
 
 
-export const fetchNews = () => {
-
+export const fetchNews = (countNews = 5) => {
+    // console.log(countNews)
     return async (dispatch) => {
         dispatch(setIsFetching(true))
+
         try {
             let response = await fetch('https://hacker-news.firebaseio.com/v0/newstories.json')
 
@@ -35,9 +36,9 @@ export const fetchNews = () => {
                 // let newsArray =  await returnedNewsArray.slice(0, 100)
                 // dispatch(updateLastNewsAction(returnedNewsArray))
                 const newsList = []
-
+                // console.log(countNews)
                 for (let i of returnedNewsArray) {
-                    if (newsList.length === 5) break; // count for News
+                    if (newsList.length === countNews) break; // count for News
                     let response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${i}.json`)
                     let news = await response.json()
 
@@ -54,7 +55,7 @@ export const fetchNews = () => {
                     // console.log(news)
                 }
                 dispatch(addNewsAction(newsList))
-                 // console.log(newsArray)
+                // console.log(newsArray)
 
 
             } else {
@@ -62,7 +63,7 @@ export const fetchNews = () => {
                     `Error code: ${response.status}\nError message: ${response.statusText}                  `
                 )
             }
-        } catch(err) {
+        } catch (err) {
             console.log(err.message)
         }
     }

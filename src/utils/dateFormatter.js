@@ -1,4 +1,4 @@
-export  const makeDateFormat = (unixDate) => {
+export const makeDateFormat = (unixDate) => {
     const date = new Date(unixDate * 1000)
 
     // const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];

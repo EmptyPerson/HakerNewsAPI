@@ -50,9 +50,12 @@ const PageStory = ({match, history}) => {
                             <div className="p-4">
                                 {!comments.isFetching ? <Tree comments={comments.comments}/>
                                     :
-                                    <div className="flex items-center justify-center">
-                                        <div style={{top: "auto", left: "auto", right: "auto", position: "static"}}
-                                             className="spinner flex"></div>
+                                    <div className="relative h-12 ">
+                                        <div
+                                            // style={{top: "auto", left: "auto", right: "auto", position: "relative"}}
+                                             className="spinner">
+
+                                        </div>
                                     </div>
                                 }
                             </div>

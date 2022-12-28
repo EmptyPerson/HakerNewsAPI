@@ -44,8 +44,9 @@ const Navbar = ({
                                 id="customRange2"
                                 list="tickmarks"
                                 value={countNews}
-                                onChange={(e) =>
-                                    dispatch(setCountNews(Number(e.target.value)))
+                                onChange={(e) => {
+                                    e.preventDefault()
+                                    dispatch(setCountNews(Number(e.target.value)))}
                                 }
                             />
                         </div> : null}

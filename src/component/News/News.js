@@ -49,7 +49,7 @@ const News = () => {
                                 <h2>{story.title}</h2>
                                 <ul>
                                     <li>{`Author: ${story.by}`}</li>
-                                    <li>
+                                    <li id="123">
                                         <NavLink
                                             onClick={() => setIsAutoUpdate(false)}
                                             className="comments-link"

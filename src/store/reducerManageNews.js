@@ -1,7 +1,7 @@
 const defaultState = {
     news: [],
     isFetching: true,
-    count: 8
+    count: 5
 }
 
 const ADD_NEWS = "ADD_NEWS"

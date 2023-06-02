@@ -29,7 +29,6 @@ const Navbar = ({
                         <div className="flex flex-wrap mr-4">
                             <label htmlFor="customRange2" className="form-label">Number of post: {countNews} </label>
                             <input
-                                disabled={isFetching}
                                 type="range"
                                 className="
                                       w-full
@@ -46,7 +45,10 @@ const Navbar = ({
                                 value={countNews}
                                 onChange={(e) => {
                                     e.preventDefault()
-                                    dispatch(setCountNews(Number(e.target.value)))}
+                                    if (!isFetching) {
+                                        dispatch(setCountNews(Number(e.target.value)))
+                                    }
+                                }
                                 }
                             />
                         </div> : null}
